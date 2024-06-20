@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}
+    Schedule of Games
+{% endblock title %}
+{% block content %}
+    <main>
+        {% for round_number, round_games in schedule %}
+            <h2>Round {{ round_number }}</h2>
+            {% for game in round_games %}
+                {% if not forloop.last %}<p>Court {{ forloop.counter }}: {{ game }}</p>{% endif %}
+            {% endfor %}
+            <p>Sitting out: {{ round_games|last }}</p>
+        {% endfor %}
+    </main>
+{% endblock content %}
