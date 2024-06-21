@@ -81,8 +81,6 @@ def generate_schedule(num_courts, player_names):
                         if len(round_games) >= max_games_per_round:
                             sitting_out = [player_names[i]
                                            for i in (all_players - used_players)]
-                            print(used_players)
-                            print('sitting out', sitting_out)
                             round_games.append(sitting_out)
                             break
             if len(round_games) >= max_games_per_round:

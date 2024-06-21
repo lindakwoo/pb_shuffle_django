@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+
+/* Set all elements to use the Open Sans font */
+body,
+input,
+textarea,
+button,
+select {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  width: 60%;
+  margin: auto;
+  border: 1px solid grey;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+/* Make the input tags look nicer */
+input {
+  height: 1.5em;
+  margin: 0;
+  padding: 0.25em 0.5em;
+}
+
+/* Make the select boxes look nicer */
+select {
+  height: 2.5em;
+}
+
+/* Make the select-multiple boxes look nicer */
+select[multiple] {
+  height: 7.5em;
+}
+
+table {
+  width: 80%;
+
+  tr {
+    height: 50px;
+  }
+}
+
+#id_is_completed {
+  zoom: 1.5;
+}
+
+form {
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 24px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+
+  p {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+    label {
+      width: 100px;
+    }
+
+    input,
+    select {
+      margin-left: 16px;
+    }
+  }
+
+  button,
+  .create_button {
+    border: none;
+    background-color: #a9a4f4;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    font-style: normal;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
+
+th {
+  text-align: left;
+}
+
+.centered_data {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+.table_link:hover {
+  color: red;
+}
+
+nav {
+  ul {
+    display: flex;
+    align-items: center;
+
+    li {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  a {
+    margin-left: 24px;
+    color: white;
+  }
+
+  a:hover {
+    color: yellow;
+  }
+}
+
+.search_form {
+  border: none;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  padding: 0;
+
+  button {
+    margin: 0 16px;
+  }
+
+  button:hover {
+    color: yellow;
+  }
+}
+
+header {
+  height: 84px;
+  background-color: #a9a4f4;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  div {
+    color: white;
+    margin-right: 24px;
+  }
+}
+
+ol {
+  width: 30%;
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    a {
+      margin-left: 16px;
+    }
+  }
+}

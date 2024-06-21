@@ -4,8 +4,10 @@
 {% endblock title %}
 {% block content %}
     <main>
-        {% for round_number, round_games in schedule %}
-            <h2>Round {{ round_number }}</h2>
+        <h1>Schedule of Games for {{ list_title }}</h1>
+        {% if not schedule %}<p>Something went wrong!  Have you entered at least 4 players?</p>{% endif %}
+        {% for round_games in schedule %}
+            <h2>Round {{ forloop.counter }}</h2>
             {% for game in round_games %}
                 {% if not forloop.last %}<p>Court {{ forloop.counter }}: {{ game }}</p>{% endif %}
             {% endfor %}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}
+    Edit player list
+{% endblock title %}
+{% block content %}
+    <main>
+        <div>
+            <h1>{{ list.title }}</h1>
+            <form>
+                <h2>Player list</h2>
+                {% csrf_token %}
+                <ol>
+                    {% for player in list.players.all %}
+                        <li id = 'player-name-{{ player.id }}'>
+                            <p id = 'player-name-{{ player.id }}'>{{ player.name }}</p>
+                            <a class="remove_player"
+                               href="{% url "delete_player" list.id player.id %}"><i class="fas fa-trash-alt"></i></a>
+                        </li>
+                    {% endfor %}
+                </ol>
+                <div id="player-inputs">
+                    <!-- Initially, there are no input fields -->
+                </div>
+                <button type="button" onclick="addPlayerInput()">Add Player!</button>
+                <a href="{% url "list_games" list.id %}"class="create_button">Create Schedule</a>
+            </form>
+        </div>
+    </main>
+    <script>
+        function addPlayerInput() {
+            var container = document.getElementById("player-inputs");
+            var input = document.createElement("input");
+            input.type = "text";
+            input.name = "new_players"; // Name for the input field
+            input.placeholder = "New Player";
+            container.appendChild(input);
+
+            var saveButton = document.createElement("button");
+            saveButton.textContent = "Save";
+            saveButton.classList.add("save-button-class"); // Add your class name here
+            saveButton.onclick = function(event) {
+                event.preventDefault();
+                var playerName = input.value.trim();
+                if(playerName===''){
+                   alert("Please enter a new player before you save")
+                   return;
+                }
+                var listId = {{ list.id }};
+                var url = "{% url 'save_player' 0 'player_name' %}".replace('0', listId).replace('player_name', encodeURIComponent(playerName));
+                window.location.href = url;
+            };
+            container.appendChild(saveButton);
+
+            container.appendChild(document.createElement("br")); // Line break for spacing
+        }
+        document.getElementById('create-players-list-form').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' && event.target.tagName === 'INPUT') {
+                event.preventDefault();
+            }
+        });
+    </script>
+{% endblock content %}

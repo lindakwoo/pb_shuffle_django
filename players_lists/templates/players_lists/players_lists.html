@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}
+    Player Lists
+{% endblock title %}
+{% block content %}
+    <main>
+        <ul>
+            {% for list in lists %}
+                <li>
+                    <a href="{% url "players_list_detail" list.id %}">
+                        <h2>{{ list.title }}</h2>
+                    </a>
+                    <a href="{% url "list_games" list.id %}">Generate Schedule</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
+{% endblock content %}
