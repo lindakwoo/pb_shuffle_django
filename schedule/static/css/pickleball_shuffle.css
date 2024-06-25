@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
 /* Set all elements to use the Open Sans font */
 body,
@@ -18,6 +19,38 @@ main {
   border: 1px solid grey;
   border-radius: 10px;
   padding: 20px;
+}
+
+header {
+  height: 84px;
+  background-color: #a9a4f4;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  p {
+    margin-right: 40px;
+    color: white;
+  }
+}
+
+.header_left,
+.header_right {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  margin-left: 40px;
+}
+
+.pickleball_title {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: white;
+  font-size: 48px;
 }
 
 /* Make the input tags look nicer */
@@ -69,19 +102,19 @@ form {
       margin-left: 16px;
     }
   }
+}
 
-  button,
-  .create_button {
-    border: none;
-    background-color: #a9a4f4;
-    padding: 5px;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    font-style: normal;
-    font-family: Arial, Helvetica, sans-serif;
-  }
+button,
+.create_button {
+  border: none;
+  background-color: #a9a4f4;
+  padding: 5px 8px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-style: normal;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 th {
@@ -104,6 +137,7 @@ nav {
   ul {
     display: flex;
     align-items: center;
+    padding-left: 24px;
 
     li {
       list-style: none;
@@ -137,20 +171,7 @@ nav {
   }
 }
 
-header {
-  height: 84px;
-  background-color: #a9a4f4;
-  margin-bottom: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  div {
-    color: white;
-    margin-right: 24px;
-  }
-}
-
-ol {
+.ordered_players {
   width: 30%;
   li {
     display: flex;
@@ -160,4 +181,118 @@ ol {
       margin-left: 16px;
     }
   }
+}
+
+.player_list_form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  justify-content: start;
+  border: none;
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .input_holder {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      button {
+        margin-left: 16px;
+      }
+    }
+  }
+
+  .form_right {
+    justify-content: start;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .select_num_courts {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-right: 16px;
+
+      label {
+        margin-left: 16px;
+      }
+    }
+  }
+}
+
+.team {
+  background-color: yellow;
+  padding: 5px;
+  margin-left: 8px;
+}
+
+.team1 {
+  margin-right: 8px;
+}
+
+.sitting_out_container {
+  background-color: #a9a4f4;
+  padding: 5px 8px;
+  color: white;
+  display: inline-block;
+}
+
+.new_player_input {
+  margin-bottom: 16px;
+}
+
+.schedule_heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h1 {
+    width: auto;
+  }
+}
+
+img {
+  height: 75px;
+}
+
+.ordered_list li::marker {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.ordered_list li a h2 {
+  color: black;
+  font-size: 24px;
+  display: inline-block;
+  padding: 5px 8px;
+}
+
+.ordered_list h2:hover {
+  background-color: yellow;
+}
+
+.remove_text {
+  display: none;
+}
+
+.remove_player:hover {
+  color: red;
+}
+
+.remove_player:hover + .remove_text {
+  display: inline-block;
+  color: red;
+}
+
+.player_number {
+  width: 10px;
+  text-align: right;
+  padding-right: 8px;
+}
+
+.player_name {
+  width: 150px;
 }

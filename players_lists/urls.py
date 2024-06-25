@@ -1,5 +1,5 @@
 from django.urls import path
-from players_lists.views import players_lists, players_list_create, players_list_detail, delete_player, save_player
+from players_lists.views import players_lists, players_list_create, players_list_detail, delete_player, save_player, search
 
 urlpatterns = [
     path("", players_lists, name="home"),
@@ -8,5 +8,6 @@ urlpatterns = [
          delete_player, name="delete_player"),
     path("create/", players_list_create, name="players_list_create"),
     path("<int:id>/save_player/<str:player_name>/",
-         save_player, name="save_player")
+         save_player, name="save_player"),
+    path("search/", search, name="search"),
 ]

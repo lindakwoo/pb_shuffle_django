@@ -1,0 +1,3 @@
+<form class="search_form" action="{% url 'search' %}" method="post">
+    {% csrf_token %} {{ search_form.as_p }}
+</form>
