@@ -19,15 +19,19 @@
                 <p>
                     Sitting out:
                     <span class='sitting_out_container'>
-                        {% for player in round.sitting_out %}
-                            {% if forloop.last and round.sitting_out|length >= 2 %}
-                                <span class = "sitting_out">and {{ player }}</span>
-                            {% elif round.sitting_out|length <= 2 %}
-                                <span class = "sitting_out">{{ player }}</span>
-                            {% else %}
-                                <span class = "sitting_out">{{ player }},{{" "}}</span>
-                            {% endif %}
-                        {% endfor %}
+                        {% if not round.sitting_out %}
+                            <span>No one is sitting out</span>
+                        {% else %}
+                            {% for player in round.sitting_out %}
+                                {% if forloop.last and round.sitting_out|length >= 2 %}
+                                    <span class = "sitting_out">and {{ player }}</span>
+                                {% elif round.sitting_out|length <= 2 %}
+                                    <span class = "sitting_out">{{ player }}</span>
+                                {% else %}
+                                    <span class = "sitting_out">{{ player }},{{" "}}</span>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
                     </span>
                 </p>
             {% endfor %}
