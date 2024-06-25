@@ -13,7 +13,7 @@ def user_login(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect("home")
+                return redirect("players_lists")
             else:
                 form.add_error(None, "Invalid username or password")
     else:
@@ -24,7 +24,7 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
-    return redirect("login")
+    return redirect("home_page")
 
 
 def signup(request):

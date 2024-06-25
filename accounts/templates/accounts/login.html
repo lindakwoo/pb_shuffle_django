@@ -1,11 +1,10 @@
 {% extends "base.html" %}
-
 {% block title %}
-   Login
+    Login
 {% endblock title %}
 {% block content %}
     <main>
-        <div>
+        <div class="centered_content_container">
             <h1>Login</h1>
             <form method="post">
                 {% csrf_token %}

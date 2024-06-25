@@ -15,15 +15,15 @@
     <body>
         <header>
             <div class = 'header_left'>
-                <img src="{% static "images/white_pickle.png" %}">
-                <h3 class = 'pickleball_title'>Pickleball Shuffle</h3>
+                <img class='icon' src="{% static "images/white_pickle.png" %}">
+                <h3 class = 'pickleball_icon_text'>Pickleball Shuffle</h3>
             </div>
             <div class = 'header_right'>
                 <nav>
                     <ul>
                         {% if user.is_authenticated %}
                             <li>
-                                <a href="{% url 'home' %}">My Players Lists</a>
+                                <a href="{% url 'players_lists' %}">My Players Lists</a>
                             </li>
                             <li>
                                 <a href="{% url 'players_list_create' %}">Create a Player List</a>

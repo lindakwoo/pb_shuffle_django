@@ -4,12 +4,12 @@ from .models import PlayersList, Player
 
 
 class PlayersListForm(forms.ModelForm):
-    # new_player_name = forms.CharField(
-    #     label='New Player', max_length=100, required=False)
-
     class Meta:
         model = PlayersList
         fields = ['title']
+        labels = {
+            'title': 'List Title',
+        }
 
 
 class SearchForm(forms.Form):

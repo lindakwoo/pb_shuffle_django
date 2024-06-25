@@ -7,6 +7,10 @@ from django.db.models import Q
 # Create your views here.
 
 
+def home_page(request):
+    return render(request, 'players_lists/home.html')
+
+
 @login_required
 def players_lists(request):
     players_lists = PlayersList.objects.filter(owner=request.user)
@@ -30,7 +34,7 @@ def players_list_create(request):
                         player_list=players_list)
 
                 # redirect to the list detail page
-            return redirect('home')
+            return redirect('players_lists')
     else:
         form = PlayersListForm()
         context = {

@@ -17,15 +17,11 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from django.shortcuts import redirect
-
-
-def redirect_to_home(request):
-    return redirect('home')
+from players_lists.views import home_page
 
 
 urlpatterns = [
-    path("", redirect_to_home, name='home_page'),
+    path("", home_page, name='home_page'),
     path("admin/", admin.site.urls),
     path("schedule/", include("schedule.urls")),
     path("players_lists/", include("players_lists.urls")),

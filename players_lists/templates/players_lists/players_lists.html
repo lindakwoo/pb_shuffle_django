@@ -4,15 +4,17 @@
 {% endblock title %}
 {% block content %}
     <main>
-        <h1>{{ user.username }}'s Pickleball Lists</h1>
-        <ol class = "ordered_list">
-            {% for list in lists %}
-                <li>
-                    <a href="{% url "players_list_detail" list.id %}">
-                        <h2>{{ list.title }}</h2>
-                    </a>
-                </li>
-            {% endfor %}
-        </ol>
+        <div class="centered_content_container">
+            <h1>{{ user.username }}'s Pickleball Lists</h1>
+            <ol class = "ordered_list">
+                {% for list in lists %}
+                    <li>
+                        <a href="{% url "players_list_detail" list.id %}">
+                            <h2>{{ list.title }}</h2>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ol>
+        </div>
     </main>
 {% endblock content %}

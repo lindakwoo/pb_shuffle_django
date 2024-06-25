@@ -13,12 +13,29 @@ select {
   padding: 0;
 }
 
-main {
+.centered_content_container {
   width: 60%;
   margin: auto;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   border-radius: 10px;
   padding: 20px;
+}
+
+.home_page_content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.hero_image,
+.hero_text {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+}
+
+.hero_text {
+  align-items: start;
 }
 
 header {
@@ -36,6 +53,10 @@ header {
   }
 }
 
+.icon {
+  height: 75px;
+}
+
 .header_left,
 .header_right {
   display: flex;
@@ -49,8 +70,16 @@ header {
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400;
   font-style: normal;
+  color: #a9a4f4;
+  font-size: 64px;
+}
+
+.pickleball_icon_text {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
   color: white;
-  font-size: 48px;
+  font-size: 32px;
 }
 
 /* Make the input tags look nicer */
@@ -83,7 +112,6 @@ table {
 }
 
 form {
-  border: 1px solid grey;
   border-radius: 5px;
   padding: 24px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
@@ -252,10 +280,6 @@ nav {
   h1 {
     width: auto;
   }
-}
-
-img {
-  height: 75px;
 }
 
 .ordered_list li::marker {
