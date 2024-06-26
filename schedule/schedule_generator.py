@@ -57,19 +57,20 @@ def generate_round(num_courts, player_names, games_counter, team_history):
                                     player for player in team2])
                     round_games.append(new_game)
 
-                    team_history.append(team1)
-                    team_history.append(team2)
                     used_players.update(team1)
                     used_players.update(team2)
-                    for player in team1:
-                        games_counter[player] += 1
-                    for player in team2:
-                        games_counter[player] += 1
 
                     if len(round_games) >= max_games_per_round:
+                        for game in round_games:
+                            team_history.append(game.team1)
+                            team_history.append(game.team2)
+                            for player in game.team1:
+                                games_counter[player] += 1
+                            for player in game.team2:
+                                games_counter[player] += 1
+
                         sitting_out = [player
                                        for player in (all_players - used_players)]
-                        print('type', type(team_history))
                         return round_games, sitting_out, games_counter, team_history
 
     return None

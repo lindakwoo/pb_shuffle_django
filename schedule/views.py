@@ -59,11 +59,10 @@ def list_games(request, id):
     team_history = request.session["team_history"]
     num_courts = request.session["num_courts"]
     num_rounds_played = request.session["num_rounds_played"]
-    print("rounds played", num_rounds_played)
-    print(games_counter)
-    set_rounds = []
+
     if min(games_counter.values()) < len(players)-1:
         for counter in range(max_attempts):
+
             result = get_next_round(
                 num_courts, players, games_counter, team_history)
 
@@ -94,6 +93,7 @@ def list_games(request, id):
         num_rounds_played += 1
         request.session["num_rounds_played"] = num_rounds_played
         request.session["extra_rounds"] = True
+
     else:
         num_rounds_played = request.session["num_rounds_played"]
         set_rounds = request.session['set_rounds']
@@ -102,8 +102,11 @@ def list_games(request, id):
         num_rounds_played += 1
         request.session["num_rounds_played"] = num_rounds_played
 
+    rounds_with_numbers = [{"round_number": num_rounds_played-i, "round": round}
+                           for i, round in enumerate(reversed(request.session["rounds"]))]
+
     context = {
-        "schedule": request.session["rounds"],
+        "schedule": rounds_with_numbers,
         "list_title": title,
         "num_courts": num_courts,
         "list_id": id
