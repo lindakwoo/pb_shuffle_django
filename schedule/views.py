@@ -52,6 +52,7 @@ def list_games(request, id):
             request.session['num_rounds_played'] = 0
             request.session["rounds"] = []
             request.session["num_courts"] = courts
+            request.session['extra_rounds'] = False
             return redirect('list_games', id=id)
 
     games_counter = request.session["games_counter"]
@@ -60,6 +61,7 @@ def list_games(request, id):
     num_rounds_played = request.session["num_rounds_played"]
     print("rounds played", num_rounds_played)
     print(games_counter)
+    set_rounds = []
     if min(games_counter.values()) < len(players)-1:
         for counter in range(max_attempts):
             result = get_next_round(
@@ -83,12 +85,19 @@ def list_games(request, id):
             request.session["team_history"] = team_history
             request.session["rounds"].append(next_round)
             request.session["num_rounds_played"] = num_rounds_played
-    else:
+    elif min(games_counter.values()) == len(players)-1 and not request.session["extra_rounds"]:
         set_rounds = list(request.session["rounds"])
+        request.session['set_rounds'] = set_rounds
         num_rounds_played = request.session["num_rounds_played"]
         appended_round = num_rounds_played % len(set_rounds)
-        print('second time', num_rounds_played)
-        print('appended', appended_round)
+        request.session["rounds"].append(set_rounds[appended_round])
+        num_rounds_played += 1
+        request.session["num_rounds_played"] = num_rounds_played
+        request.session["extra_rounds"] = True
+    else:
+        num_rounds_played = request.session["num_rounds_played"]
+        set_rounds = request.session['set_rounds']
+        appended_round = num_rounds_played % len(set_rounds)
         request.session["rounds"].append(set_rounds[appended_round])
         num_rounds_played += 1
         request.session["num_rounds_played"] = num_rounds_played

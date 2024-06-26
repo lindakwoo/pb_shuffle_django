@@ -34,8 +34,6 @@ def generate_round(num_courts, player_names, games_counter, team_history):
     if num_players < 4:
         print("Error: Not enough players or player names provided.")
         return []
-
-    # player_indices = list(range(num_players))
     round_games = []
     used_players = set()
     all_players = set(player_names)
