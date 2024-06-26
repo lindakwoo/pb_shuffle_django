@@ -25,20 +25,31 @@ def get_next_round(courts, players, games_counter, team_history):
     return None
 
 
+def clear_session(request, players, id, courts):
+    request.session["games_counter"] = {
+        player: 0 for player in players}
+    request.session["team_history"] = []
+    request.session["rounds"] = []
+    request.session["num_courts"] = courts
+    return redirect('list_games', id=id)
+
+
 @login_required
 def list_games(request, id):
     players_list = get_object_or_404(PlayersList, id=id)
     title = players_list.title
     players = [player.name for player in players_list.players.all()]
-    max_attempts = 100
+    max_attempts = 1000
 
     if request.method == "POST":
         if "create_schedule" in request.POST:
             num_courts = request.POST.get('num_courts')
             courts = int(num_courts)
             # Clear session data for a new schedule
-            request.session["games_counter"] = [0] * len(players)
+            request.session["games_counter"] = {
+                player: 0 for player in players}
             request.session["team_history"] = []
+            request.session['num_rounds_played'] = 0
             request.session["rounds"] = []
             request.session["num_courts"] = courts
             return redirect('list_games', id=id)
@@ -46,28 +57,41 @@ def list_games(request, id):
     games_counter = request.session["games_counter"]
     team_history = request.session["team_history"]
     num_courts = request.session["num_courts"]
+    num_rounds_played = request.session["num_rounds_played"]
+    print("rounds played", num_rounds_played)
+    print(games_counter)
+    if min(games_counter.values()) < len(players)-1:
+        for counter in range(max_attempts):
+            result = get_next_round(
+                num_courts, players, games_counter, team_history)
 
-    for counter in range(max_attempts):
-        print(counter)
+            if result:
+                next_round, games_counter, team_history = result
+                break
 
-        result = get_next_round(
-            num_courts, players, games_counter, team_history)
+        if not result:
+            request.session["team_history"] = []
+            team_history = request.session["team_history"]
+            result = get_next_round(
+                num_courts, players, games_counter, team_history)
+            if result:
+                next_round, games_counter, team_history = result
 
         if result:
-            next_round, games_counter, team_history = result
-            break
-    if not result:
-        request.session["team_history"] = []
-        team_history = request.session["team_history"]
-        result = get_next_round(
-            num_courts, players, games_counter, team_history)
-        if result:
-            next_round, games_counter, team_history = result
-
-    if result:
-        request.session["games_counter"] = games_counter
-        request.session["team_history"] = team_history
-        request.session["rounds"].append(next_round)
+            num_rounds_played += 1
+            request.session["games_counter"] = games_counter
+            request.session["team_history"] = team_history
+            request.session["rounds"].append(next_round)
+            request.session["num_rounds_played"] = num_rounds_played
+    else:
+        set_rounds = list(request.session["rounds"])
+        num_rounds_played = request.session["num_rounds_played"]
+        appended_round = num_rounds_played % len(set_rounds)
+        print('second time', num_rounds_played)
+        print('appended', appended_round)
+        request.session["rounds"].append(set_rounds[appended_round])
+        num_rounds_played += 1
+        request.session["num_rounds_played"] = num_rounds_played
 
     context = {
         "schedule": request.session["rounds"],

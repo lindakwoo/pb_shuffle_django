@@ -35,28 +35,28 @@ def generate_round(num_courts, player_names, games_counter, team_history):
         print("Error: Not enough players or player names provided.")
         return []
 
-    player_indices = list(range(num_players))
+    # player_indices = list(range(num_players))
     round_games = []
     used_players = set()
-    all_players = set(player_indices)
-    random.shuffle(player_indices)
+    all_players = set(player_names)
+    random.shuffle(player_names)
 
     priority_players = sorted(
-        player_indices, key=lambda x: games_counter[x])
+        player_names, key=lambda x: games_counter[x])
     max_games_per_round = min(num_courts, num_players // 4)
 
     for combo in combinations(priority_players, 4):
-        for team_indexes in combinations(combo, 2):
-            remaining_indexes = set(combo) - set(team_indexes)
+        for team_names in combinations(combo, 2):
+            remaining_names = set(combo) - set(team_names)
 
-            if len(remaining_indexes) == 2:
-                team1 = list(sorted(team_indexes))
-                team2 = list(sorted(remaining_indexes))
+            if len(remaining_names) == 2:
+                team1 = list(sorted(team_names))
+                team2 = list(sorted(remaining_names))
 
                 if team1 not in team_history and team2 not in team_history and used_players.isdisjoint(team1) and used_players.isdisjoint(team2):
 
-                    new_game = Game([player_names[i] for i in team1], [
-                                    player_names[i] for i in team2])
+                    new_game = Game([player for player in team1], [
+                                    player for player in team2])
                     round_games.append(new_game)
 
                     team_history.append(team1)
@@ -69,8 +69,8 @@ def generate_round(num_courts, player_names, games_counter, team_history):
                         games_counter[player] += 1
 
                     if len(round_games) >= max_games_per_round:
-                        sitting_out = [player_names[i]
-                                       for i in (all_players - used_players)]
+                        sitting_out = [player
+                                       for player in (all_players - used_players)]
                         print('type', type(team_history))
                         return round_games, sitting_out, games_counter, team_history
 
