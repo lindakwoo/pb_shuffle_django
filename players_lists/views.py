@@ -52,6 +52,12 @@ def players_list_detail(request, id):
     return render(request, 'players_lists/players_list_detail.html', context)
 
 
+def delete_list(request, id):
+    item = get_object_or_404(PlayersList, id=id)
+    item.delete()
+    return redirect("players_lists")
+
+
 @login_required
 def delete_player(request, list_id, player_id,):
     player = get_object_or_404(Player, id=player_id)

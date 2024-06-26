@@ -321,6 +321,33 @@ nav {
   width: 150px;
 }
 
+.list_number {
+  font-size: 24px;
+  font-weight: bold;
+  width: 24px;
+  text-align: right;
+  padding-right: 8px;
+  border-bottom: grey 1px solid;
+}
+.list_title {
+  width: 500px;
+  border-bottom: grey 1px solid;
+  a {
+    color: black;
+  }
+}
+
+.list_title:hover {
+  h2 {
+    color: #a9a4f4;
+  }
+}
+
+.trash_can {
+  border-bottom: grey 1px solid;
+  width: 96px;
+}
+
 form.next_round {
   width: 150px;
   border: none;
