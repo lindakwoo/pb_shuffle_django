@@ -13,7 +13,7 @@
                 <div class = 'hero_text_container'>
                     <h1 class = "pickleball_title">Pickleball Shuffle</h1>
                     <p>Never play with the same player twice!</p>
-                    {% if user.username %}
+                    {% if user.username and not has_lists %}
                         <a href="{% url "players_list_create" %}"class = "create_button">Get started</a>
                     {% endif %}
                 </div>

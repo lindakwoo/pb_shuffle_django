@@ -8,7 +8,14 @@ from django.db.models import Q
 
 
 def home_page(request):
-    return render(request, 'players_lists/home.html')
+    has_lists = False
+    if request.user.is_authenticated:
+        players_lists = PlayersList.objects.filter(owner=request.user)
+        if players_lists:
+            has_lists = True
+    context = {"has_lists": has_lists}
+
+    return render(request, 'players_lists/home.html', context)
 
 
 @login_required
