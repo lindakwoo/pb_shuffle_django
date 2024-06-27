@@ -14,24 +14,57 @@ select {
 }
 
 .centered_content_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 60%;
   margin: auto;
-  /* border: 1px solid grey; */
-  border-radius: 10px;
   padding: 20px;
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
 }
 
 .home_page_content {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: start;
+  height: 100vh;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    height: auto;
+  }
 }
 
 .hero_image,
 .hero_text {
   display: flex;
   justify-content: center;
-
+  align-items: center;
   width: 100%;
+
+  img {
+    width: 90%;
+    margin-top: 100px;
+    @media (max-width: 768px) {
+      margin-top: 24px;
+      margin-bottom: 24px;
+    }
+  }
+
+  .hero_text_container {
+    margin-top: 100px;
+    @media (max-width: 768px) {
+      margin-top: 0;
+    }
+
+    p {
+      font-size: 24px;
+    }
+  }
 }
 
 .hero_text {
@@ -173,6 +206,7 @@ nav {
       flex-direction: column;
     }
   }
+
   a {
     margin-left: 24px;
     color: white;
@@ -197,14 +231,22 @@ nav {
   button:hover {
     color: yellow;
   }
+
+  p {
+    input {
+      width: 100px;
+    }
+  }
 }
 
 .ordered_players {
   width: 30%;
+
   li {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     a {
       margin-left: 16px;
     }
@@ -212,11 +254,8 @@ nav {
 }
 
 .player_list_form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: start;
-  justify-content: start;
   border: none;
+
   div {
     display: flex;
     flex-direction: column;
@@ -233,11 +272,25 @@ nav {
     }
   }
 
+  .form_top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    h2 {
+      margin-top: 0;
+    }
+
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
   .form_right {
     justify-content: start;
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-bottom: 16px;
 
     .select_num_courts {
       display: flex;
@@ -249,6 +302,104 @@ nav {
         margin-left: 16px;
       }
     }
+
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+
+      .select_num_courts {
+        margin-bottom: 16px;
+      }
+    }
+  }
+}
+
+/* schedule display */
+.schedule_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.schedule_heading_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.schedule_heading {
+  @media (max-width: 768px) {
+    font-size: 12px;
+    text-align: center;
+  }
+}
+
+form.next_round {
+  width: 150px;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin-left: 16px;
+  @media (max-width: 768px) {
+    margin-left: 0px;
+  }
+}
+
+.rounds_container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  @media (max-width: 768px) {
+    align-items: center;
+  }
+}
+
+.round {
+  background-color: #a9a4f4;
+  margin-bottom: 24px;
+  width: 600px;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.schedule_heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    width: auto;
+  }
+}
+
+.game_container,
+.names_container {
+  display: flex;
+  align-items: center;
+}
+
+.game_container {
+  margin-bottom: 16px;
+  @media (max-width: 768px) {
+    align-items: start;
+  }
+}
+
+.names_container {
+  p {
+    margin: 0 8px;
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
   }
 }
 
@@ -256,10 +407,6 @@ nav {
   background-color: yellow;
   padding: 5px;
   margin-left: 8px;
-}
-
-.team1 {
-  margin-right: 8px;
 }
 
 .sitting_out_container {
@@ -271,15 +418,6 @@ nav {
 
 .new_player_input {
   margin-bottom: 16px;
-}
-
-.schedule_heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  h1 {
-    width: auto;
-  }
 }
 
 .ordered_list li::marker {
@@ -329,9 +467,11 @@ nav {
   padding-right: 8px;
   border-bottom: grey 1px solid;
 }
+
 .list_title {
   width: 500px;
   border-bottom: grey 1px solid;
+
   a {
     color: black;
   }
@@ -348,15 +488,85 @@ nav {
   width: 96px;
 }
 
-form.next_round {
-  width: 150px;
-  border: none;
-  box-shadow: none;
-  padding: 0;
+form.accounts_form,
+form.create_list_form {
+  width: 350px;
 }
 
-.schedule_heading_container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.hamburger {
+  display: none;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  flex-direction: column;
+}
+
+/* Hamburger icon styles */
+.hamburger-line {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  margin-bottom: 5px;
+  transition: transform 0.5s ease;
+  /* Add transition for smooth animation */
+}
+
+.hamburger.active .hamburger-line:first-child {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+
+.hamburger.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .hamburger-line:last-child {
+  /* transform: rotate(-45deg) translate(5px, -6px); */
+  transform: rotate(-45deg) translate(5px, -6px);
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .nav {
+    flex-direction: row;
+  }
+
+  .nav.active {
+    flex-direction: column;
+    align-items: end;
+    margin-top: 180px;
+    width: 300px;
+    position: absolute;
+  }
+
+  .items {
+    display: none;
+    flex-direction: column;
+    background-color: #a9a4f4;
+  }
+
+  .hamburger {
+    display: flex;
+    justify-content: end;
+  }
+
+  .hamburger.active {
+    position: absolute;
+    color: black;
+    margin-top: 25px;
+    left: 10px;
+  }
+
+  .item {
+    margin: 5px 0;
+  }
+
+  /* Show navbar items when active class is applied */
+  .items.active {
+    display: flex;
+    align-items: start;
+    height: 100px;
+  }
 }

@@ -7,7 +7,9 @@
     <main>
         <div class="centered_content_container">
             <h1>Create a new players list</h1>
-            <form id="create-players-list-form" method="post">
+            <form class="create_list_form"
+                  id="create-players-list-form"
+                  method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <div id="player-inputs">

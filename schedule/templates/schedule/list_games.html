@@ -4,7 +4,7 @@
 {% endblock title %}
 {% block content %}
     <main>
-        <div class="centered_content_container">
+        <div class="centered_content_container schedule_container">
             <div class = "schedule_heading_container">
                 <div class="schedule_heading">
                     <h1>Schedule of Games for {{ list_title }}</h1>
@@ -18,33 +18,42 @@
                     <button type="submit" name="next_round" class="create_button">Next Round</button>
                 </form>
             </div>
-            {% if not schedule %}<p>Something went wrong!  Have you entered at least 4 players?</p>{% endif %}
-            {% for round_object in schedule %}
-                <h2>Round {{ round_object.round_number }}</h2>
-                {% for game in round_object.round.games %}
-                    <p>
-                        Court {{ forloop.counter }}: <span class="team">{{ game.team1_player1 }} and {{ game.team1_player2 }}</span>  versus <span class = "team">{{ game.team2_player1 }} and {{ game.team2_player2 }}</span>
-                    </p>
-                {% endfor %}
-                <p>
-                    Sitting out:
-                    <span class="sitting_out_container">
-                        {% if not round_object.round.sitting_out %}
-                            <span>No one is sitting out</span>
-                        {% else %}
-                            {% for player in round_object.round.sitting_out %}
-                                {% if forloop.last and round_object.round.sitting_out|length >= 2 %}
-                                    <span class="sitting_out">and {{ player }}</span>
-                                {% elif round_object.round.sitting_out|length <= 2 %}
-                                    <span class="sitting_out">{{ player }}</span>
+            <div class="rounds_container">
+                {% if not schedule %}<p>Something went wrong!  Have you entered at least 4 players?</p>{% endif %}
+                {% for round_object in schedule %}
+                    <div class = "round">
+                        <h2>Round {{ round_object.round_number }}</h2>
+                        {% for game in round_object.round.games %}
+                            <div class="game_container">
+                                Court {{ forloop.counter }}:
+                                <div class = "names_container">
+                                    <p class="team">{{ game.team1_player1 }} and {{ game.team1_player2 }}</p>
+                                    <p>versus</p>
+                                    <p class = "team">{{ game.team2_player1 }} and {{ game.team2_player2 }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <p>
+                            Sitting out:
+                            <span class="sitting_out_container">
+                                {% if not round_object.round.sitting_out %}
+                                    <span>No one is sitting out</span>
                                 {% else %}
-                                    <span class="sitting_out">{{ player }},{{ " " }}</span>
+                                    {% for player in round_object.round.sitting_out %}
+                                        {% if forloop.last and round_object.round.sitting_out|length >= 2 %}
+                                            <span class="sitting_out">and {{ player }}</span>
+                                        {% elif round_object.round.sitting_out|length <= 2 %}
+                                            <span class="sitting_out">{{ player }}</span>
+                                        {% else %}
+                                            <span class="sitting_out">{{ player }},{{ " " }}</span>
+                                        {% endif %}
+                                    {% endfor %}
                                 {% endif %}
-                            {% endfor %}
-                        {% endif %}
-                    </span>
-                </p>
-            {% endfor %}
+                            </span>
+                        </p>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </main>
 {% endblock content %}

@@ -16,6 +16,6 @@ class SearchForm(forms.Form):
     q = forms.CharField(
         max_length=50,
         widget=forms.TextInput(
-            attrs={"placeholder": "Search for a player..."}),
+            attrs={"placeholder": "Search"}),
         label="",
     )

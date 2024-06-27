@@ -77,20 +77,29 @@ def save_player(request, id, player_name):
 
 
 def search(request):
-    all_my_players = Player.objects.filter(owner=request.user)
-    emptyForm = SearchForm()
     query = None
     player_results = []
+    emptyForm = SearchForm()
+    message = None
+    if request.user.is_authenticated:
+        all_my_players = Player.objects.filter(owner=request.user)
+        emptyForm = SearchForm()
+        query = None
+        player_results = []
 
-    if request.method == "POST":
-        form = SearchForm(request.POST)
-        if form.is_valid():
-            query = form.cleaned_data["q"]
-            player_results = all_my_players.filter(Q(name__icontains=query))
-            print(player_results)
+        if request.method == "POST":
+            form = SearchForm(request.POST)
+            if form.is_valid():
+                query = form.cleaned_data["q"]
+                player_results = all_my_players.filter(
+                    Q(name__icontains=query))
+                print(player_results)
+    else:
+        message = "You need to log in in order to perform a search"
     context = {
         "query": query,
         "player_results": player_results,
         "search_form": emptyForm,
+        "message": message,
     }
     return render(request, "players_lists/results.html", context)

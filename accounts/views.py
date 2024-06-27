@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from accounts.forms import LoginForm, SignUpForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
+from players_lists.models import PlayersList
 
 
 def user_login(request):
@@ -13,7 +14,10 @@ def user_login(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect("players_lists")
+                players_lists = PlayersList.objects.filter(owner=request.user)
+                if players_lists:
+                    return redirect("players_lists")
+                return redirect("home_page")
             else:
                 form.add_error(None, "Invalid username or password")
     else:
@@ -40,7 +44,7 @@ def signup(request):
                     username=username, password=password
                 )
                 login(request, user)
-                return redirect("home")
+                return redirect("home_page")
             else:
                 form.add_error("password", "the passwords do not match")
 

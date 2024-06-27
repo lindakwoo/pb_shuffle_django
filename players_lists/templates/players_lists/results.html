@@ -16,6 +16,8 @@
                         </li>
                     {% endfor %}
                 </ul>
+            {% elif message %}
+                <p>{{ message }}</p>
             {% else %}
                 <p>Your query, "{{ query }}",  returned no search results from any of your lists</p>
             {% endif %}

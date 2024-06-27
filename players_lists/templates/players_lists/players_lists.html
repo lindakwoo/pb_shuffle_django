@@ -6,24 +6,28 @@
     <main>
         <div class="centered_content_container">
             <h1>{{ user.username }}'s Pickleball Lists</h1>
-            <table>
-                <tbody>
-                    {% for list in lists %}
-                        <tr class = 'list_row'>
-                            <td class ="list_number">{{ forloop.counter }}.</td>
-                            <td class ="list_title" id = 'player-name-{{ player.id }}'>
-                                <a href="{% url "players_list_detail" list.id %}">
-                                    <h2>{{ list.title }}</h2>
-                                </a>
-                            </td>
-                            <td class = "trash_can">
-                                <a class="remove_player" href="{% url "delete_list" list.id %}"><i class="fas fa-trash-alt"></i></a>
-                                <span class = "remove_text">delete list</span>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            {% if lists %}
+                <table>
+                    <tbody>
+                        {% for list in lists %}
+                            <tr class = 'list_row'>
+                                <td class ="list_number">{{ forloop.counter }}.</td>
+                                <td class ="list_title" id = 'player-name-{{ player.id }}'>
+                                    <a href="{% url "players_list_detail" list.id %}">
+                                        <h2>{{ list.title }}</h2>
+                                    </a>
+                                </td>
+                                <td class = "trash_can">
+                                    <a class="remove_player" href="{% url "delete_list" list.id %}"><i class="fas fa-trash-alt"></i></a>
+                                    <span class = "remove_text">delete list</span>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>You have no active player lists</p>
+            {% endif %}
         </div>
     </main>
 {% endblock content %}

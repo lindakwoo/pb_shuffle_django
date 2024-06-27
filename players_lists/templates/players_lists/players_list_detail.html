@@ -13,7 +13,21 @@
                   method="post">
                 {% csrf_token %}
                 <div>
-                    <h2>Player list: {{ list.players.all.count }} players</h2>
+                    <div class = "form_top">
+                        <h2>Player list: {{ list.players.all.count }} players</h2>
+                        <div class="form_right">
+                            <div class="select_num_courts">
+                                <select name="num_courts" id="num_courts">
+                                    <option value=1>1</option>
+                                    <option selected="selected" value=2>2</option>
+                                    <option value=3>3</option>
+                                    <option value=4>4</option>
+                                </select>
+                                <label for="num_courts">select number of courts</label>
+                            </div>
+                            <button type="submit" name="create_schedule" class="create_button">Generate Schedule</button>
+                        </div>
+                    </div>
                     <div id="player-inputs">
                         <div class = "input_holder">
                             <input type=text name="new_players" placeholder="New Player">
@@ -35,18 +49,6 @@
                             {% endfor %}
                         </tbody>
                     </table>
-                </div>
-                <div class="form_right">
-                    <div class="select_num_courts">
-                        <select name="num_courts" id="num_courts">
-                            <option value=1>1</option>
-                            <option selected="selected" value=2>2</option>
-                            <option value=3>3</option>
-                            <option value=4>4</option>
-                        </select>
-                        <label for="num_courts">select number of courts</label>
-                    </div>
-                    <button type="submit" name="create_schedule" class="create_button">Generate Schedule</button>
                 </div>
             </form>
         </div>
