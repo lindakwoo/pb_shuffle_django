@@ -37,10 +37,10 @@
                     <ul class = "items" id = "items">
                         {% if user.is_authenticated %}
                             <li class = "item">
-                                <a class="link-btn" href="{% url 'players_lists' %}">My Players Lists</a>
+                                <a class="link-btn" href="{% url 'players_lists' %}">My Lists</a>
                             </li>
                             <li class = "item">
-                                <a class="link-btn" href="{% url 'players_list_create' %}">Create a Player List</a>
+                                <a class="link-btn" href="{% url 'players_list_create' %}">Create a List</a>
                             </li>
                             <li class = "item">
                                 <a class="link-btn" href="{% url 'logout' %}">Logout</a>

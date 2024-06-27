@@ -33,9 +33,9 @@
                                 </div>
                             </div>
                         {% endfor %}
-                        <p>
-                            Sitting out:
-                            <span class="sitting_out_container">
+                        <div class="sitting_out_container">
+                            <p>Sitting out:</p>
+                            <div class="sitting_out_names">
                                 {% if not round_object.round.sitting_out %}
                                     <span>No one is sitting out</span>
                                 {% else %}
@@ -49,8 +49,8 @@
                                         {% endif %}
                                     {% endfor %}
                                 {% endif %}
-                            </span>
-                        </p>
+                            </div>
+                        </div>
                     </div>
                 {% endfor %}
             </div>

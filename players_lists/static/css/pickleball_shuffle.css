@@ -97,6 +97,9 @@ header {
   justify-content: start;
   align-items: center;
   margin-left: 40px;
+  @media (max-width: 768px) {
+    flex-direction: row-reverse;
+  }
 }
 
 .pickleball_title {
@@ -320,6 +323,10 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (max-width: 768px) {
+    font-size: 12px;
+    text-align: center;
+  }
 }
 .schedule_heading_container {
   display: flex;
@@ -333,6 +340,13 @@ nav {
 }
 
 .schedule_heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    width: auto;
+  }
   @media (max-width: 768px) {
     font-size: 12px;
     text-align: center;
@@ -347,6 +361,7 @@ form.next_round {
   margin-left: 16px;
   @media (max-width: 768px) {
     margin-left: 0px;
+    margin-bottom: 24px;
   }
 }
 
@@ -355,9 +370,9 @@ form.next_round {
   flex-direction: column;
   align-items: start;
   justify-content: center;
-  @media (max-width: 768px) {
+  /* @media (max-width: 768px) {
     align-items: center;
-  }
+  } */
 }
 
 .round {
@@ -366,15 +381,11 @@ form.next_round {
   width: 600px;
   padding: 8px;
   border-radius: 10px;
-}
-
-.schedule_heading {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  h1 {
-    width: auto;
+  flex-direction: column;
+  @media (max-width: 768px) {
+    width: 80vw;
+    align-items: start;
   }
 }
 
@@ -387,6 +398,7 @@ form.next_round {
 .game_container {
   margin-bottom: 16px;
   @media (max-width: 768px) {
+    justify-content: center;
     align-items: start;
   }
 }
@@ -396,11 +408,11 @@ form.next_round {
     margin: 0 8px;
   }
 
-  @media (max-width: 768px) {
+  /* @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
     justify-content: start;
-  }
+  } */
 }
 
 .team {
@@ -408,12 +420,21 @@ form.next_round {
   padding: 5px;
   margin-left: 8px;
 }
-
 .sitting_out_container {
+  display: flex;
+  align-items: center;
+  background-color: #a9a4f4;
+  padding: 5px 8px;
+  color: black;
+  /* @media (max-width: 768px) {
+    justify-content: center;
+  } */
+}
+
+.sitting_out_names {
   background-color: #a9a4f4;
   padding: 5px 8px;
   color: white;
-  display: inline-block;
 }
 
 .new_player_input {
@@ -502,6 +523,7 @@ form.create_list_form {
   cursor: pointer;
   padding: 0;
   flex-direction: column;
+  margin-right: 16px;
 }
 
 /* Hamburger icon styles */
