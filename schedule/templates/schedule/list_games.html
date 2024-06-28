@@ -4,12 +4,56 @@
 {% endblock title %}
 {% block content %}
     <main>
-        {% for round_number, round_games in schedule %}
-            <h2>Round {{ round_number }}</h2>
-            {% for game in round_games %}
-                {% if not forloop.last %}<p>Court {{ forloop.counter }}: {{ game }}</p>{% endif %}
-            {% endfor %}
-            <p>Sitting out: {{ round_games|last }}</p>
-        {% endfor %}
+        <div class="centered_content_container schedule_container">
+            <div class = "schedule_heading_container">
+                <div class="schedule_heading">
+                    <h1>Schedule of Games for {{ list_title }}</h1>
+                </div>
+                <form class="next_round"
+                      method="post"
+                      action="{% url 'list_games' list_id %}">
+                    {% csrf_token %}
+                    {% comment %} hide num_courts input to be able to grab the data in the view {% endcomment %}
+                    <input type="hidden" name="num_courts" value="{{ num_courts }}">
+                    <button type="submit" name="next_round" class="create_button">Next Round</button>
+                </form>
+            </div>
+            <div class="rounds_container">
+                {% if not schedule %}<p>Something went wrong!  Have you entered at least 4 players?</p>{% endif %}
+                {% for round_object in schedule %}
+                    <div class = "round">
+                        <h2>Round {{ round_object.round_number }}</h2>
+                        {% for game in round_object.round.games %}
+                            <div class="game_container">
+                                Court {{ forloop.counter }}:
+                                <div class = "names_container">
+                                    <p class="team">{{ game.team1_player1 }} and {{ game.team1_player2 }}</p>
+                                    <p>versus</p>
+                                    <p class = "team">{{ game.team2_player1 }} and {{ game.team2_player2 }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <div class="sitting_out_container">
+                            <p>Sitting out:</p>
+                            <div class="sitting_out_names">
+                                {% if not round_object.round.sitting_out %}
+                                    <span>No one is sitting out</span>
+                                {% else %}
+                                    {% for player in round_object.round.sitting_out %}
+                                        {% if forloop.last and round_object.round.sitting_out|length >= 2 %}
+                                            <span class="sitting_out">and {{ player }}</span>
+                                        {% elif round_object.round.sitting_out|length <= 2 %}
+                                            <span class="sitting_out">{{ player }}</span>
+                                        {% else %}
+                                            <span class="sitting_out">{{ player }},{{ " " }}</span>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </main>
 {% endblock content %}

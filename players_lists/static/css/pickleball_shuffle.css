@@ -1,0 +1,602 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+/* Set all elements to use the Open Sans font */
+body,
+input,
+textarea,
+button,
+select {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+/* header with nav and search ************************************************************************  */
+header {
+  height: 84px;
+  background-color: #a9a4f4;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  p {
+    margin-right: 40px;
+    color: white;
+  }
+}
+
+.icon {
+  height: 75px;
+}
+
+.header_left,
+.header_right {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  margin-left: 40px;
+  @media (max-width: 768px) {
+    flex-direction: row-reverse;
+  }
+}
+
+.pickleball_title {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #a9a4f4;
+  font-size: 96px !important;
+}
+
+.pickleball_icon_text {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: white;
+  font-size: 32px;
+}
+
+nav {
+  position: relative;
+}
+
+nav {
+  ul {
+    display: flex;
+    align-items: center;
+    padding-left: 24px;
+
+    li {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  a {
+    margin-left: 24px;
+    color: white;
+  }
+
+  a:hover {
+    color: yellow;
+  }
+}
+
+.hamburger {
+  display: none;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  flex-direction: column;
+  margin-right: 16px;
+}
+
+/* Hamburger icon styles */
+.hamburger-line {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  margin-bottom: 5px;
+  transition: transform 0.5s ease;
+  /* Add transition for smooth animation */
+}
+
+.hamburger.active .hamburger-line:first-child {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+
+.hamburger.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .hamburger-line:last-child {
+  transform: rotate(-45deg) translate(5px, -6px);
+}
+
+/* Responsive nav */
+@media screen and (max-width: 768px) {
+  .nav {
+    flex-direction: row;
+  }
+
+  .nav.active {
+    flex-direction: column;
+    align-items: end;
+    margin-top: 52px;
+    margin-left: 10px;
+    position: absolute;
+    padding: 8px;
+  }
+
+  .items {
+    display: none;
+    flex-direction: column;
+    background-color: #a9a4f4;
+  }
+
+  .hamburger {
+    display: flex;
+    justify-content: end;
+  }
+
+  .hamburger.active {
+    position: absolute;
+    color: black;
+    margin-top: 20px;
+    left: 10px;
+    z-index: 25;
+    padding-left: 8px;
+  }
+
+  .item {
+    margin: 5px 0;
+  }
+
+  /* Show navbar items when active class is applied */
+  .items.active {
+    position: absolute;
+    display: flex;
+    align-items: start;
+    height: 100px;
+    z-index: 10;
+    width: 500px;
+  }
+}
+
+/* main section ************************************************************************ */
+
+.centered_content_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  margin: auto;
+  padding: 20px;
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
+}
+
+/* home page ************************************************************************ */
+.home_page_content {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  justify-content: center;
+  align-items: start;
+  height: 100vh;
+  @media (max-width: 768px) {
+    grid-template-rows: auto;
+    height: auto;
+  }
+  img {
+    position: absolute;
+    width: auto;
+    opacity: 0.3;
+    z-index: -1;
+    @media (max-width: 1280px) {
+      width: auto;
+    }
+  }
+
+  .background_image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../images/cropped_back.jpg");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    z-index: -1;
+
+    @media (max-width: 768px) {
+      background-image: url("../images/mobile_back.jpg");
+    }
+  }
+
+  .hero_text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero_text_container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    align-items: start;
+    @media (max-width: 768px) {
+      align-items: center;
+      text-align: center;
+    }
+
+    p {
+      font-size: 24px;
+      font-weight: 400;
+      color: black;
+    }
+  }
+}
+
+.hero_text {
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .home_page_content {
+    height: 100vh; /* Ensure full height on mobile */
+  }
+
+  .hero_text {
+    padding: 0 1rem;
+  }
+
+  .pickleball_title {
+    font-size: 2rem;
+  }
+
+  .create_button {
+    font-size: 1rem;
+  }
+}
+/* forms ************************************************************************  */
+/* Make the input tags look nicer */
+input {
+  height: 1.5em;
+  margin: 0;
+  padding: 0.25em 0.5em;
+}
+
+/* Make the select boxes look nicer */
+select {
+  height: 24px;
+}
+
+/* Make the select-multiple boxes look nicer */
+select[multiple] {
+  height: 7.5em;
+}
+
+table {
+  width: 80%;
+
+  tr {
+    height: 50px;
+  }
+}
+
+form,
+.search_results {
+  border-radius: 5px;
+  padding: 24px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+
+  p {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+    label {
+      width: 100px;
+    }
+
+    input,
+    select {
+      margin-left: 16px;
+    }
+  }
+}
+
+.search_results_container {
+  align-items: start;
+}
+.search_results {
+  width: 500px;
+}
+
+th {
+  text-align: left;
+}
+
+.centered_data {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+.table_link:hover {
+  color: red;
+}
+/* search form */
+.search_form {
+  border: none;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  padding: 0;
+
+  button {
+    margin: 0 16px;
+  }
+
+  button:hover {
+    color: yellow;
+  }
+
+  p {
+    input {
+      width: 100px;
+    }
+  }
+}
+
+form.accounts_form,
+form.create_list_form {
+  width: 350px;
+}
+
+/* schedule display   ************************************************************************ */
+.schedule_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (max-width: 768px) {
+    font-size: 12px;
+    text-align: center;
+  }
+}
+.schedule_heading_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.schedule_heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    width: auto;
+  }
+  @media (max-width: 768px) {
+    font-size: 12px;
+    text-align: center;
+  }
+}
+
+form.next_round {
+  width: 150px;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin-left: 16px;
+  @media (max-width: 768px) {
+    margin-left: 0px;
+    margin-bottom: 24px;
+  }
+}
+
+.rounds_container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+.round {
+  background-color: #a9a4f4;
+  margin-bottom: 24px;
+  width: 600px;
+  padding: 24px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  h2 {
+    margin-top: 0;
+  }
+  @media (max-width: 768px) {
+    width: 80vw;
+    align-items: start;
+  }
+}
+
+.game_container,
+.names_container {
+  display: flex;
+  align-items: center;
+}
+
+.game_container {
+  margin-bottom: 16px;
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+}
+
+.names_container {
+  p {
+    margin: 0 8px;
+  }
+}
+
+.team {
+  background-color: yellow;
+  padding: 5px;
+  margin-left: 8px;
+}
+.sitting_out_container {
+  display: flex;
+  align-items: center;
+  background-color: #a9a4f4;
+  color: black;
+}
+
+.sitting_out_names {
+  background-color: #a9a4f4;
+  padding: 5px 8px;
+  color: white;
+}
+
+/* player list detail ********************************************************************************** */
+.player_list_form {
+  border: none;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .input_holder {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      button {
+        margin-left: 16px;
+      }
+    }
+  }
+
+  .form_top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    h2 {
+      margin-top: 0;
+    }
+
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  .form_right {
+    justify-content: start;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 16px;
+
+    .select_num_courts {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-right: 16px;
+
+      label {
+        margin-left: 16px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+
+      .select_num_courts {
+        margin-bottom: 16px;
+      }
+    }
+  }
+}
+
+.new_player_input {
+  margin-bottom: 16px;
+}
+
+.trash:hover {
+  color: red;
+}
+
+.player_number {
+  width: 10px;
+  text-align: right;
+  padding-right: 8px;
+}
+
+.player_name {
+  width: 150px;
+}
+/* lists ****************************************************************************** */
+.list_number {
+  font-size: 24px;
+  font-weight: bold;
+  width: 24px;
+  text-align: right;
+  padding-right: 8px;
+  border-bottom: grey 1px solid;
+}
+
+.list_title {
+  width: 500px;
+  border-bottom: grey 1px solid;
+
+  a {
+    color: black;
+  }
+}
+
+.list_title:hover {
+  h2 {
+    color: #a9a4f4;
+  }
+}
+
+.trash_can {
+  border-bottom: grey 1px solid;
+  width: 96px;
+}
+
+/*  buttons and a tags */
+button,
+.create_button {
+  border: none;
+  background-color: #a9a4f4;
+  padding: 5px 8px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-style: normal;
+  font-family: Arial, Helvetica, sans-serif;
+}

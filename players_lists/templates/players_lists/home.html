@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    Pickleball Shuffle
+{% endblock title %}
+{% block content %}
+    <main>
+        <div class = 'home_page_content'>
+            <div class="background_image"></div>
+            {% comment %} <img src="{% static "images/cropped_back.jpg" %}"> {% endcomment %}
+            <div class="hero_text">
+                <div class = 'hero_text_container'>
+                    <h1 class = "pickleball_title">Pickleball Shuffle</h1>
+                    <p>Never play with the same player twice!</p>
+                    {% if user.username and not has_lists %}
+                        <a href="{% url "players_list_create" %}"class = "create_button">Get started</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock content %}
