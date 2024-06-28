@@ -18,8 +18,7 @@
                                     </a>
                                 </td>
                                 <td class = "trash_can">
-                                    <a class="remove_player" href="{% url "delete_list" list.id %}"><i class="fas fa-trash-alt"></i></a>
-                                    <span class = "remove_text">delete list</span>
+                                    <a class="trash" href="{% url "delete_list" list.id %}"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>
                         {% endfor %}

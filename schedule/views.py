@@ -25,15 +25,6 @@ def get_next_round(courts, players, games_counter, team_history):
     return None
 
 
-def clear_session(request, players, id, courts):
-    request.session["games_counter"] = {
-        player: 0 for player in players}
-    request.session["team_history"] = []
-    request.session["rounds"] = []
-    request.session["num_courts"] = courts
-    return redirect('list_games', id=id)
-
-
 @login_required
 def list_games(request, id):
     players_list = get_object_or_404(PlayersList, id=id)

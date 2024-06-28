@@ -41,19 +41,16 @@
                                     <td class ="player_number">{{ forloop.counter }}.</td>
                                     <td class ="player_name"id = 'player-name-{{ player.id }}'>{{ player.name }}</td>
                                     <td>
-                                        <a class="remove_player"
-                                           href="{% url "delete_player" list.id player.id %}"><i class="fas fa-trash-alt"></i></a>
-                                        <span class = "remove_text">remove from list</span>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </form>
-        </div>
-    </main>
-    <script>
+                                        <a class="trash" href="{% url "delete_player" list.id player.id %}"><i class="fas fa-trash-alt"></i></a>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </main>
+        <script>
        function saveInput(event){
             var input = document.querySelector('input[name="new_players"]');
             var playerName = input.value.trim();
@@ -70,5 +67,5 @@
                 event.preventDefault();
             }
         });
-    </script>
-{% endblock content %}
+        </script>
+    {% endblock content %}

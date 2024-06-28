@@ -12,65 +12,7 @@ select {
   margin: 0;
   padding: 0;
 }
-
-.centered_content_container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 60%;
-  margin: auto;
-  padding: 20px;
-
-  @media (max-width: 768px) {
-    width: 90%;
-  }
-}
-
-.home_page_content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-content: center;
-  align-items: start;
-  height: 100vh;
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    height: auto;
-  }
-}
-
-.hero_image,
-.hero_text {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-
-  img {
-    width: 90%;
-    margin-top: 100px;
-    @media (max-width: 768px) {
-      margin-top: 24px;
-      margin-bottom: 24px;
-    }
-  }
-
-  .hero_text_container {
-    margin-top: 100px;
-    @media (max-width: 768px) {
-      margin-top: 0;
-    }
-
-    p {
-      font-size: 24px;
-    }
-  }
-}
-
-.hero_text {
-  align-items: start;
-}
-
+/* header with nav and search ************************************************************************  */
 header {
   height: 84px;
   background-color: #a9a4f4;
@@ -118,85 +60,6 @@ header {
   font-size: 32px;
 }
 
-/* Make the input tags look nicer */
-input {
-  height: 1.5em;
-  margin: 0;
-  padding: 0.25em 0.5em;
-}
-
-/* Make the select boxes look nicer */
-select {
-  height: 2.5em;
-}
-
-/* Make the select-multiple boxes look nicer */
-select[multiple] {
-  height: 7.5em;
-}
-
-table {
-  width: 80%;
-
-  tr {
-    height: 50px;
-  }
-}
-
-#id_is_completed {
-  zoom: 1.5;
-}
-
-form {
-  border-radius: 5px;
-  padding: 24px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-
-  p {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-
-    label {
-      width: 100px;
-    }
-
-    input,
-    select {
-      margin-left: 16px;
-    }
-  }
-}
-
-button,
-.create_button {
-  border: none;
-  background-color: #a9a4f4;
-  padding: 5px 8px;
-  border-radius: 5px;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-  font-style: normal;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-th {
-  text-align: left;
-}
-
-.centered_data {
-  text-align: center;
-}
-
-a {
-  text-decoration: none;
-}
-
-.table_link:hover {
-  color: red;
-}
-
 nav {
   ul {
     display: flex;
@@ -220,6 +83,208 @@ nav {
   }
 }
 
+.hamburger {
+  display: none;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  flex-direction: column;
+  margin-right: 16px;
+}
+
+/* Hamburger icon styles */
+.hamburger-line {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  margin-bottom: 5px;
+  transition: transform 0.5s ease;
+  /* Add transition for smooth animation */
+}
+
+.hamburger.active .hamburger-line:first-child {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+
+.hamburger.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .hamburger-line:last-child {
+  transform: rotate(-45deg) translate(5px, -6px);
+}
+
+/* Responsive nav */
+@media screen and (max-width: 768px) {
+  .nav {
+    flex-direction: row;
+  }
+
+  .nav.active {
+    flex-direction: column;
+    align-items: end;
+    margin-top: 180px;
+    width: 300px;
+    position: absolute;
+  }
+
+  .items {
+    display: none;
+    flex-direction: column;
+    background-color: #a9a4f4;
+  }
+
+  .hamburger {
+    display: flex;
+    justify-content: end;
+  }
+
+  .hamburger.active {
+    position: absolute;
+    color: black;
+    margin-top: 25px;
+    left: 10px;
+  }
+
+  .item {
+    margin: 5px 0;
+  }
+
+  /* Show navbar items when active class is applied */
+  .items.active {
+    display: flex;
+    align-items: start;
+    height: 100px;
+  }
+}
+
+/* main section ************************************************************************ */
+
+.centered_content_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  margin: auto;
+  padding: 20px;
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
+}
+
+/* home page ************************************************************************ */
+.home_page_content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: start;
+  height: 100vh;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    height: auto;
+  }
+}
+
+.hero_image,
+.hero_text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  img {
+    width: 90%;
+    margin-top: 100px;
+    @media (max-width: 768px) {
+      margin-top: 24px;
+      margin-bottom: 24px;
+    }
+  }
+
+  .hero_text_container {
+    margin-top: 100px;
+    @media (max-width: 768px) {
+      margin-top: 0;
+    }
+
+    p {
+      font-size: 24px;
+    }
+  }
+}
+
+.hero_text {
+  align-items: start;
+}
+
+/* forms ************************************************************************  */
+/* Make the input tags look nicer */
+input {
+  height: 1.5em;
+  margin: 0;
+  padding: 0.25em 0.5em;
+}
+
+/* Make the select boxes look nicer */
+select {
+  height: 24px;
+}
+
+/* Make the select-multiple boxes look nicer */
+select[multiple] {
+  height: 7.5em;
+}
+
+table {
+  width: 80%;
+
+  tr {
+    height: 50px;
+  }
+}
+
+form {
+  border-radius: 5px;
+  padding: 24px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+
+  p {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+    label {
+      width: 100px;
+    }
+
+    input,
+    select {
+      margin-left: 16px;
+    }
+  }
+}
+
+th {
+  text-align: left;
+}
+
+.centered_data {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+.table_link:hover {
+  color: red;
+}
+/* search form */
 .search_form {
   border: none;
   box-shadow: none;
@@ -242,20 +307,120 @@ nav {
   }
 }
 
-.ordered_players {
-  width: 30%;
+form.accounts_form,
+form.create_list_form {
+  width: 350px;
+}
 
-  li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+/* schedule display   ************************************************************************ */
+.schedule_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (max-width: 768px) {
+    font-size: 12px;
+    text-align: center;
+  }
+}
+.schedule_heading_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    a {
-      margin-left: 16px;
-    }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
   }
 }
 
+.schedule_heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    width: auto;
+  }
+  @media (max-width: 768px) {
+    font-size: 12px;
+    text-align: center;
+  }
+}
+
+form.next_round {
+  width: 150px;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin-left: 16px;
+  @media (max-width: 768px) {
+    margin-left: 0px;
+    margin-bottom: 24px;
+  }
+}
+
+.rounds_container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+.round {
+  background-color: #a9a4f4;
+  margin-bottom: 24px;
+  width: 600px;
+  padding: 24px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  h2 {
+    margin-top: 0;
+  }
+  @media (max-width: 768px) {
+    width: 80vw;
+    align-items: start;
+  }
+}
+
+.game_container,
+.names_container {
+  display: flex;
+  align-items: center;
+}
+
+.game_container {
+  margin-bottom: 16px;
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+}
+
+.names_container {
+  p {
+    margin: 0 8px;
+  }
+}
+
+.team {
+  background-color: yellow;
+  padding: 5px;
+  margin-left: 8px;
+}
+.sitting_out_container {
+  display: flex;
+  align-items: center;
+  background-color: #a9a4f4;
+  color: black;
+}
+
+.sitting_out_names {
+  background-color: #a9a4f4;
+  padding: 5px 8px;
+  color: white;
+}
+
+/* player list detail ********************************************************************************** */
 .player_list_form {
   border: none;
 
@@ -318,155 +483,11 @@ nav {
   }
 }
 
-/* schedule display */
-.schedule_container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  @media (max-width: 768px) {
-    font-size: 12px;
-    text-align: center;
-  }
-}
-.schedule_heading_container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    justify-content: center;
-  }
-}
-
-.schedule_heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  h1 {
-    width: auto;
-  }
-  @media (max-width: 768px) {
-    font-size: 12px;
-    text-align: center;
-  }
-}
-
-form.next_round {
-  width: 150px;
-  border: none;
-  box-shadow: none;
-  padding: 0;
-  margin-left: 16px;
-  @media (max-width: 768px) {
-    margin-left: 0px;
-    margin-bottom: 24px;
-  }
-}
-
-.rounds_container {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: center;
-  /* @media (max-width: 768px) {
-    align-items: center;
-  } */
-}
-
-.round {
-  background-color: #a9a4f4;
-  margin-bottom: 24px;
-  width: 600px;
-  padding: 8px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  @media (max-width: 768px) {
-    width: 80vw;
-    align-items: start;
-  }
-}
-
-.game_container,
-.names_container {
-  display: flex;
-  align-items: center;
-}
-
-.game_container {
-  margin-bottom: 16px;
-  @media (max-width: 768px) {
-    justify-content: center;
-    align-items: start;
-  }
-}
-
-.names_container {
-  p {
-    margin: 0 8px;
-  }
-
-  /* @media (max-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-  } */
-}
-
-.team {
-  background-color: yellow;
-  padding: 5px;
-  margin-left: 8px;
-}
-.sitting_out_container {
-  display: flex;
-  align-items: center;
-  background-color: #a9a4f4;
-  padding: 5px 8px;
-  color: black;
-  /* @media (max-width: 768px) {
-    justify-content: center;
-  } */
-}
-
-.sitting_out_names {
-  background-color: #a9a4f4;
-  padding: 5px 8px;
-  color: white;
-}
-
 .new_player_input {
   margin-bottom: 16px;
 }
 
-.ordered_list li::marker {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.ordered_list li a h2 {
-  color: black;
-  font-size: 24px;
-  display: inline-block;
-  padding: 5px 8px;
-}
-
-.ordered_list h2:hover {
-  background-color: yellow;
-}
-
-.remove_text {
-  display: none;
-}
-
-.remove_player:hover {
-  color: red;
-}
-
-.remove_player:hover + .remove_text {
-  display: inline-block;
+.trash:hover {
   color: red;
 }
 
@@ -479,7 +500,7 @@ form.next_round {
 .player_name {
   width: 150px;
 }
-
+/* lists ****************************************************************************** */
 .list_number {
   font-size: 24px;
   font-weight: bold;
@@ -509,86 +530,16 @@ form.next_round {
   width: 96px;
 }
 
-form.accounts_form,
-form.create_list_form {
-  width: 350px;
-}
-
-.hamburger {
-  display: none;
-  background-color: transparent;
+/*  buttons and a tags */
+button,
+.create_button {
   border: none;
-  color: #fff;
-  font-size: 1.5rem;
+  background-color: #a9a4f4;
+  padding: 5px 8px;
+  border-radius: 5px;
+  color: white;
   cursor: pointer;
-  padding: 0;
-  flex-direction: column;
-  margin-right: 16px;
-}
-
-/* Hamburger icon styles */
-.hamburger-line {
-  width: 25px;
-  height: 3px;
-  background-color: #fff;
-  margin-bottom: 5px;
-  transition: transform 0.5s ease;
-  /* Add transition for smooth animation */
-}
-
-.hamburger.active .hamburger-line:first-child {
-  transform: rotate(45deg) translate(5px, 6px);
-}
-
-.hamburger.active .hamburger-line:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.active .hamburger-line:last-child {
-  /* transform: rotate(-45deg) translate(5px, -6px); */
-  transform: rotate(-45deg) translate(5px, -6px);
-}
-
-/* Responsive styles */
-@media screen and (max-width: 768px) {
-  .nav {
-    flex-direction: row;
-  }
-
-  .nav.active {
-    flex-direction: column;
-    align-items: end;
-    margin-top: 180px;
-    width: 300px;
-    position: absolute;
-  }
-
-  .items {
-    display: none;
-    flex-direction: column;
-    background-color: #a9a4f4;
-  }
-
-  .hamburger {
-    display: flex;
-    justify-content: end;
-  }
-
-  .hamburger.active {
-    position: absolute;
-    color: black;
-    margin-top: 25px;
-    left: 10px;
-  }
-
-  .item {
-    margin: 5px 0;
-  }
-
-  /* Show navbar items when active class is applied */
-  .items.active {
-    display: flex;
-    align-items: start;
-    height: 100px;
-  }
+  font-size: 16px;
+  font-style: normal;
+  font-family: Arial, Helvetica, sans-serif;
 }
