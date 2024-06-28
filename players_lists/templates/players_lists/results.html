@@ -4,18 +4,18 @@
 {% endblock title %}
 {% block content %}
     <main>
-        <div class="centered_content_container">
+        <div class="centered_content_container search_results_container">
             <heading>
             <h1>Search results:</h1>
             </heading>
             {% if player_results %}
-                <ul>
+                <ol class="search_results">
                     {% for player in player_results %}
                         <li>
                             {{ player.name }} is found in  <a href="{% url 'players_list_detail' player.player_list.id %}">{{ player.player_list.title }}</a>
                         </li>
                     {% endfor %}
-                </ul>
+                </ol>
             {% elif message %}
                 <p>{{ message }}</p>
             {% else %}

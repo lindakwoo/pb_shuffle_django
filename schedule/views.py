@@ -45,12 +45,12 @@ def list_games(request, id):
             request.session["num_courts"] = courts
             request.session['extra_rounds'] = False
             return redirect('list_games', id=id)
-
+# if not a new schedule, grab history from the session
     games_counter = request.session["games_counter"]
     team_history = request.session["team_history"]
     num_courts = request.session["num_courts"]
     num_rounds_played = request.session["num_rounds_played"]
-
+# if we haven't reached the point where the min number of games played by all players isn't equal to all players length minus 1, generate a new round (extra rounds =False!)
     if min(games_counter.values()) < len(players)-1:
         for counter in range(max_attempts):
 
@@ -75,6 +75,7 @@ def list_games(request, id):
             request.session["team_history"] = team_history
             request.session["rounds"].append(next_round)
             request.session["num_rounds_played"] = num_rounds_played
+#  once we have reached this point, freeze the schedule and just start from the beginning and set extra rounds to TRUE
     elif min(games_counter.values()) == len(players)-1 and not request.session["extra_rounds"]:
         set_rounds = list(request.session["rounds"])
         request.session['set_rounds'] = set_rounds
@@ -84,7 +85,7 @@ def list_games(request, id):
         num_rounds_played += 1
         request.session["num_rounds_played"] = num_rounds_played
         request.session["extra_rounds"] = True
-
+# continue to go through the frozen rounds (extra rounds =True!)
     else:
         num_rounds_played = request.session["num_rounds_played"]
         set_rounds = request.session['set_rounds']
