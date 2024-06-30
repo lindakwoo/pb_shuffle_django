@@ -19,7 +19,7 @@ SECRET_KEY = os.environ.get(
 # Ensure DEBUG is off for production
 DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost').split(',')
+# ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost').split(',')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -35,7 +35,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = False
 
-# ALLOWED_HOSTS = ["pickleball-shuffle.onrender.com"]
+ALLOWED_HOSTS = ["pickleball-shuffle.onrender.com"]
 
 # Application definition
 
