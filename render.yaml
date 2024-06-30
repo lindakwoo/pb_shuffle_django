@@ -6,7 +6,7 @@ services:
     startCommand: gunicorn pickleball_shuffle.wsgi:application
     envVars:
       - key: DJANGO_SECRET_KEY
-        value: your-secret-key
+        value: sFkLsfHiOPwjOwako8hnvoKuAmQ5TV8Llusp9H8GINy-sMYcNbRF-A-n9NI-AxSUW-0
       - key: DJANGO_DEBUG
         value: False
       - key: DJANGO_ALLOWED_HOSTS
