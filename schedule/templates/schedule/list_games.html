@@ -15,6 +15,21 @@
                     {% csrf_token %}
                     {% comment %} hide num_courts input to be able to grab the data in the view {% endcomment %}
                     <input type="hidden" name="num_courts" value="{{ num_courts }}">
+                    <div class = "new_player_arrived_container">
+                        <input type=text name="new_player_to_add" placeholder="New Player Arrived">
+                        <button type="submit" name="add_player" class="create_button">Add a Player</button>
+                    </div>
+                    <div class = "player_left_container">
+                        <select name="player_name_to_remove" id="player_name_to_remove">
+                            <option value={{ None }}>none
+                            </option>
+                            {% for player in players_list.players.all %}
+                                <option value={{ player.name }}>{{ player.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <button type="submit" name="remove_player" class="create_button">Player left</button>
+                    </div>
                     <button type="submit" name="next_round" class="create_button">Next Round</button>
                 </form>
             </div>

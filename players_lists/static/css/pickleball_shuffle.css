@@ -372,6 +372,7 @@ form.create_list_form {
 /* schedule display   ************************************************************************ */
 .schedule_container {
   display: flex;
+  width: 80%;
   flex-direction: column;
   align-items: center;
   @media (max-width: 768px) {
@@ -383,9 +384,9 @@ form.create_list_form {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: column;
 
   @media (max-width: 768px) {
-    flex-direction: column;
     justify-content: center;
   }
 }
@@ -405,14 +406,33 @@ form.create_list_form {
 }
 
 form.next_round {
-  width: 150px;
   border: none;
+  display: flex;
   box-shadow: none;
   padding: 0;
   margin-left: 16px;
+  margin-bottom: 16px;
   @media (max-width: 768px) {
     margin-left: 0px;
     margin-bottom: 24px;
+  }
+  button,
+  input,
+  select {
+    margin-right: 16px;
+  }
+}
+
+.new_player_arrived_container,
+.player_left_container {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-right: 16px;
+
+  button {
+    background-color: yellow;
+    color: black;
   }
 }
 
