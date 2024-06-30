@@ -434,11 +434,14 @@ form.next_round {
   @media (max-width: 768px) {
     margin-left: 0px;
     margin-bottom: 24px;
+    flex-direction: column;
+    align-items: start;
   }
   button,
   input,
   select {
     margin-right: 16px;
+    margin-bottom: 16px;
   }
 }
 
