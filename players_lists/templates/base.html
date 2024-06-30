@@ -55,8 +55,8 @@
                         {% endif %}
                     </ul>
                 </nav>
-                {% load custom_tags %}
-                {% show_search_form %}
+                {% comment %} {% load custom_tags %}
+                {% show_search_form %} {% endcomment %}
             </div>
         </header>
         {% block content %}

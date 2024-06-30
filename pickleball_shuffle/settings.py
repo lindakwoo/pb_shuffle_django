@@ -39,7 +39,7 @@ load_dotenv(env_path)
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = False
 
-ALLOWED_HOSTS = ['lindakwoo.pythonanywhere.com', '127.0.0.1']
+ALLOWED_HOSTS = ['lindakwoo.pythonanywhere.com', '127.0.0.1', 'localhost']
 
 # Application definition
 
