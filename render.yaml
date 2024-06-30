@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: pickleball-shuffle
+    env: python
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput
+    startCommand: gunicorn pickleball_shuffle.wsgi:application
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        value: your-secret-key
+      - key: DJANGO_DEBUG
+        value: False
+      - key: DJANGO_ALLOWED_HOSTS
+        value: pickleball-shuffle.onrender.com
