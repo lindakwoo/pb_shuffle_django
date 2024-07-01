@@ -80,7 +80,8 @@ def list_games(request, id):
                 Player.objects.create(
                     name=new_player_to_add, owner=request.user, player_list=players_list)
                 games_counter = request.session.get("games_counter", {})
-                games_counter[new_player_to_add] = min(games_counter.values())
+                games_counter[new_player_to_add] = min(
+                    games_counter.values())
                 request.session["games_counter"] = games_counter
             return redirect('list_games', id=id)
         elif "next_round" in request.POST:

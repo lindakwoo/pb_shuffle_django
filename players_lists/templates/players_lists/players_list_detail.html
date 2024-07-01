@@ -30,8 +30,11 @@
                     </div>
                     <div id="player-inputs">
                         <div class = "input_holder">
-                            <input type=text name="new_players" placeholder="New Player">
-                            <button type="button" onClick ="saveInput()">Add player</button>
+                            <input id="newPlayerInput"
+                                   type="text"
+                                   name="new_players"
+                                   placeholder="New Player">
+                            <button id="addPlayerBtn" type="button" onClick ="saveInput()">Add player</button>
                         </div>
                     </div>
                     <table>
@@ -61,11 +64,14 @@
             var listId = {{ list.id }};
             var url = "{% url 'save_player' 0 'player_name' %}".replace('0', listId).replace('player_name', encodeURIComponent(playerName));
             window.location.href = url;
-        }
+        };
         document.getElementById('create_players_list_form').addEventListener('keydown', function(event) {
             if (event.key === 'Enter' && event.target.tagName === 'INPUT') {
                 event.preventDefault();
             }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('newPlayerInput').focus();
         });
         </script>
     {% endblock content %}
