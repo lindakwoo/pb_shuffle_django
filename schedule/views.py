@@ -44,8 +44,23 @@ def list_games(request, id):
             request.session['num_rounds_played'] = 0
             request.session["rounds"] = []
             request.session["num_courts"] = courts
-            request.session['extra_rounds'] = False
-            return redirect('list_games', id=id)
+
+            games_counter = request.session["games_counter"]
+            team_history = request.session["team_history"]
+            num_courts = request.session["num_courts"]
+            num_rounds_played = request.session["num_rounds_played"]
+
+            result = get_next_round(
+                num_courts, players, games_counter, team_history)
+
+            if result:
+                next_round, games_counter, team_history = result
+                num_rounds_played += 1
+                request.session["games_counter"] = games_counter
+                request.session["team_history"] = team_history
+                request.session["rounds"].append(next_round)
+                request.session["num_rounds_played"] = num_rounds_played
+            # return redirect('list_games', id=id)
         elif "remove_player" in request.POST:
             player_name_to_remove = request.POST.get('player_name_to_remove')
             if player_name_to_remove:
@@ -59,65 +74,50 @@ def list_games(request, id):
                     request.session["games_counter"] = games_counter
             return redirect('list_games', id=id)
         elif "add_player" in request.POST:
-            print("hello")
             new_player_to_add = request.POST.get('new_player_to_add')
-            print(new_player_to_add)
+
             if new_player_to_add:
                 Player.objects.create(
                     name=new_player_to_add, owner=request.user, player_list=players_list)
                 games_counter = request.session.get("games_counter", {})
                 games_counter[new_player_to_add] = min(games_counter.values())
                 request.session["games_counter"] = games_counter
-
             return redirect('list_games', id=id)
-# if not a new schedule, grab history from the session
+        elif "next_round" in request.POST:
+            games_counter = request.session["games_counter"]
+            team_history = request.session["team_history"]
+            num_courts = request.session["num_courts"]
+            num_rounds_played = request.session["num_rounds_played"]
+        # if we haven't reached the point where the min number of games played by all players isn't equal to all players length minus 1, generate a new round (extra rounds =False!)
+            # if min(games_counter.values()) < len(players)-1:
+            for counter in range(max_attempts):
+
+                result = get_next_round(
+                    num_courts, players, games_counter, team_history)
+
+                if result:
+                    next_round, games_counter, team_history = result
+                    break
+
+            if not result:
+                request.session["team_history"] = []
+                team_history = request.session["team_history"]
+                result = get_next_round(
+                    num_courts, players, games_counter, team_history)
+                if result:
+                    next_round, games_counter, team_history = result
+
+            if result:
+                num_rounds_played += 1
+                request.session["games_counter"] = games_counter
+                request.session["team_history"] = team_history
+                request.session["rounds"].append(next_round)
+                request.session["num_rounds_played"] = num_rounds_played
+
     games_counter = request.session["games_counter"]
     team_history = request.session["team_history"]
     num_courts = request.session["num_courts"]
     num_rounds_played = request.session["num_rounds_played"]
-# if we haven't reached the point where the min number of games played by all players isn't equal to all players length minus 1, generate a new round (extra rounds =False!)
-    # if min(games_counter.values()) < len(players)-1:
-    for counter in range(max_attempts):
-
-        result = get_next_round(
-            num_courts, players, games_counter, team_history)
-
-        if result:
-            next_round, games_counter, team_history = result
-            break
-
-    if not result:
-        request.session["team_history"] = []
-        team_history = request.session["team_history"]
-        result = get_next_round(
-            num_courts, players, games_counter, team_history)
-        if result:
-            next_round, games_counter, team_history = result
-
-    if result:
-        num_rounds_played += 1
-        request.session["games_counter"] = games_counter
-        request.session["team_history"] = team_history
-        request.session["rounds"].append(next_round)
-        request.session["num_rounds_played"] = num_rounds_played
-#  once we have reached this point, freeze the schedule and just start from the beginning and set extra rounds to TRUE
-#     elif min(games_counter.values()) == len(players)-1 and not request.session["extra_rounds"]:
-#         set_rounds = list(request.session["rounds"])
-#         request.session['set_rounds'] = set_rounds
-#         num_rounds_played = request.session["num_rounds_played"]
-#         appended_round = num_rounds_played % len(set_rounds)
-#         request.session["rounds"].append(set_rounds[appended_round])
-#         num_rounds_played += 1
-#         request.session["num_rounds_played"] = num_rounds_played
-#         request.session["extra_rounds"] = True
-# # continue to go through the frozen rounds (extra rounds =True!)
-#     else:
-#         num_rounds_played = request.session["num_rounds_played"]
-#         set_rounds = request.session['set_rounds']
-#         appended_round = num_rounds_played % len(set_rounds)
-#         request.session["rounds"].append(set_rounds[appended_round])
-#         num_rounds_played += 1
-#         request.session["num_rounds_played"] = num_rounds_played
 
     rounds_with_numbers = [{"round_number": num_rounds_played-i, "round": round}
                            for i, round in enumerate(reversed(request.session["rounds"]))]

@@ -12,11 +12,18 @@ select {
   margin: 0;
   padding: 0;
 }
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
 
 .base_body {
   width: 100%;
   overflow-y: auto; /* Change this to allow vertical scrolling */
-  padding: 0 10px; /* Added padding */
 }
 /* header with nav and search ************************************************************************  */
 header {
@@ -213,18 +220,18 @@ nav {
   align-items: start;
   height: 100vh;
   width: 100%;
-  padding: 0 16px;
+  /* padding: 0 16px; */
+  /* margin: 0 16px; */
   @media (max-width: 768px) {
     grid-template-rows: auto;
     height: auto;
   }
   img {
     position: absolute;
-    width: auto;
+    width: 100%;
     opacity: 0.3;
     z-index: -1;
     @media (max-width: 1280px) {
-      width: auto;
     }
   }
 
