@@ -71,7 +71,9 @@
             }
         });
         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('newPlayerInput').focus();
+            setTimeout(function() {
+                document.getElementById('newPlayerInput').focus();
+            }, 100); // Adjust delay as needed
         });
         </script>
     {% endblock content %}
