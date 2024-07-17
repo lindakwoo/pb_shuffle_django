@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from common.json import ModelEncoder
 from django.views.decorators.http import require_http_methods
+import json
+from django.contrib.auth.models import User
 
 
 class PlayerListEncoder(ModelEncoder):
@@ -24,17 +26,18 @@ def home_page(request):
     return render(request, 'players_lists/home.html', context)
 
 
-# @require_http_methods(["GET", "POST"])
+@require_http_methods(["GET", "POST"])
 # @login_required
 def players_lists(request):
-    # players_lists = PlayersList.objects.all()
-    players_lists = PlayersList.objects.filter(owner=request.user)
-    print("here first", players_lists)
-    data = [{'id': plist.id, 'title': plist.title} for plist in players_lists]
-    response_data = {'username': request.user.username, 'lists': data}
-    print("i'm here", request.user)
-    # return JsonResponse({'players_lists': players_lists}, encoder=PlayerListEncoder)
-    return JsonResponse(response_data)
+    if request.method == "POST":
+        data = json.loads(request.body)
+        username = data.get("user")
+        user = get_object_or_404(User, username=username)
+        players_lists = PlayersList.objects.filter(owner=user)
+        print("here first", players_lists)
+        data = [{'id': plist.id, 'title': plist.title}
+                for plist in players_lists]
+        return JsonResponse({'players_lists': players_lists}, encoder=PlayerListEncoder)
 
 
 @login_required

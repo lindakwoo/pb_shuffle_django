@@ -7,7 +7,14 @@ function App() {
   const fetchData = async () => {
     const url = "http://localhost:8000/players_lists/";
     try {
-      const response = await fetch(url, { user: "lindakwoo" });
+      const fetchOptions = {
+        method: "POST",
+        body: JSON.stringify({ user: "lindawoo" }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+      const response = await fetch(url, fetchOptions);
       console.log("hello", response)
 
       if (response.ok) {
