@@ -15,14 +15,13 @@ function App() {
         },
       }
       const response = await fetch(url, fetchOptions);
-      console.log("hello", response)
 
       if (response.ok) {
         const data = await response.json();
         console.log(data)
 
       } else {
-        console.log(`Failure to get locations. Status code: ${response.status}`);
+        console.log(`Failure to get player lists. Status code: ${response.status}`);
       }
     } catch (error) {
       console.error("Error:", error);
