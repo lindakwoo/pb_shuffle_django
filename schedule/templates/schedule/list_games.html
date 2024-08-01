@@ -70,5 +70,11 @@
                 {% endfor %}
             </div>
         </div>
+        <script>
+            // Display Django context variables in the console
+            console.log("Schedule:", {{ schedule|safe }});
+            console.log("List Title:", "{{ list_title }}");
+            console.log("Players List:", {{ players_list|safe }});
+        </script>
     </main>
 {% endblock content %}
