@@ -30,7 +30,8 @@ def list_games(request, id):
     players_list = get_object_or_404(PlayersList, id=id)
     title = players_list.title
     players = [player.name for player in players_list.players.all()]
-    max_attempts = 1000
+    # set to 1000 for now.  determine optimal number of tries later...
+    max_attempts = 1000 
     print(request.POST)
 
     if request.method == "POST":
